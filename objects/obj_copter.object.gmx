@@ -36,6 +36,7 @@ audio_sound_gain(snd, 0.1, 0);
 playerid = id;
 fuel = 100;
 max_fuel = 100;
+
 </string>
           </argument>
         </arguments>
@@ -149,6 +150,15 @@ if (place_meeting(x + hspd, y, obj_fuelstation)) ||(place_meeting(x, y + vspd, o
             {
                 fuel += 1;
             }
+    }
+// Room Wrap
+if (x &gt; room_width || x &lt; room_width)
+    {
+        move_wrap(true, false, sprite_width);
+    }
+if (y &gt; room_height || y &lt; room_height)
+    {
+        move_wrap(false, true, sprite_height);
     }
 
 

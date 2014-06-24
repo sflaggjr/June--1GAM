@@ -63,6 +63,7 @@ if (x &gt; room_width) || (y &gt; room_height)
           <argument>
             <kind>1</kind>
             <string>instance_destroy();
+lives -= 1;
 
 </string>
           </argument>

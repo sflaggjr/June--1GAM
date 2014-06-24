@@ -29,6 +29,7 @@
 alarm[0] = 150;
 alarm[1] = 30;
 time = 60;
+lives = 3;
 
 
 
@@ -112,6 +113,12 @@ alarm[1] = 30;
     {
         // We'll handle what happens when time hits 0. Ending the game for now.
         room_goto_next();
+        time = 60;
+    }
+    
+if lives = 0
+    {
+        game_end();
     }
 </string>
           </argument>

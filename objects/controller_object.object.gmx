@@ -165,19 +165,19 @@ draw_text(480, 460, "Score: " + string(score));
 draw_text(480, y, "Time: " + string(time));
 draw_text(x, y, "Fuel: " + string(obj_copter.fuel));
 
-for (i = 0; i &lt; lives; i++)
+for (i = 0; i &gt; lives; i++)
     {   
         if (i = 1)
         {
-            draw_sprite(obj_injured, 1, 240, y);
+            draw_sprite(spr_injured_dying, 1, 260, y+5);
         }
         else if (i = 2)
         {
-           draw_sprite(obj_injured, 1, 250, y); 
+           draw_sprite(spr_injured_dying, 1, 250, y+5); 
         }
         else 
         {
-            draw_sprite(obj_injured, 1, 260, y);
+            draw_sprite(spr_injured_dying, 1, 240, y+5);
         }
     }
 </string>

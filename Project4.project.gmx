@@ -34,11 +34,12 @@
     <object>objects\obj_fuelstation</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\Title</room>
     <room>rooms\level_1</room>
-    <room>rooms\room1</room>
-    <room>rooms\room2</room>
-    <room>rooms\room3</room>
-    <room>rooms\room4</room>
+    <room>rooms\level_2</room>
+    <room>rooms\level_3</room>
+    <room>rooms\level_4</room>
+    <room>rooms\level_5</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

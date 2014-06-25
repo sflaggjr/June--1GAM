@@ -26,10 +26,16 @@
           <argument>
             <kind>1</kind>
             <string>randomize();
-alarm[0] = 150;
-alarm[1] = 30;
+game_state = game_paused;
 time = 60;
 lives = 3;
+alarm[1] = 30;       
+
+
+
+
+
+         
 
 
 
@@ -55,38 +61,15 @@ lives = 3;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>time -=1;
-if (!sign(obj_copter.hspd) = 0  || !sign(obj_copter.vspd) = 0)
-    {   
-        obj_copter.fuel -= 5
+            <string>if game_state = game_play
+    {
+        time -=1;
+        if (!sign(obj_copter.hspd) = 0  || !sign(obj_copter.vspd) = 0)
+            {   
+                obj_copter.fuel -= 1
+            }
+    alarm[1] = 30;
     }
-alarm[1] = 30;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//instance_create(random(room_width - 10), random(room_height - 10), obj_injured);
-
-//alarm[0] = 150;
-
 </string>
           </argument>
         </arguments>
@@ -109,18 +92,30 @@ alarm[1] = 30;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if time = 0
+            <string>if game_state = game_paused
     {
-        // We'll handle what happens when time hits 0. Ending the game for now.
-        room_goto_next();
-        audio_stop_sound(snd_copter);
-        time = 60;
+        if keyboard_check(vk_space)
+            {   
+                room_goto_next();
+                game_state = game_play;
+            }
     }
+
+
+if game_state = game_play
+{
+    if time = 0
+        {
+            // We'll handle what happens when time hits 0. Ending the game for now.
+            room_goto_next();
+            time = 60;
+        }
     
-if lives = 0
-    {
-        game_end();
-    }
+    if lives = 0
+        {
+            game_end();
+        }
+}
 </string>
           </argument>
         </arguments>
@@ -160,25 +155,18 @@ if lives = 0
           <argument>
             <kind>1</kind>
             <string>draw_set_font(font0);
+if game_state = game_play
+{
 draw_text(x, 460, "Rescuees: " + string(obj_copter.load));
 draw_text(480, 460, "Score: " + string(score));
 draw_text(480, y, "Time: " + string(time));
 draw_text(x, y, "Fuel: " + string(obj_copter.fuel));
+}
 
-for (i = 0; i &gt; lives; i++)
-    {   
-        if (i = 1)
-        {
-            draw_sprite(spr_injured_dying, 1, 260, y+5);
-        }
-        else if (i = 2)
-        {
-           draw_sprite(spr_injured_dying, 1, 250, y+5); 
-        }
-        else 
-        {
-            draw_sprite(spr_injured_dying, 1, 240, y+5);
-        }
+if room = Title
+    {
+        image_angle += 1;
+        draw_text_ext_transformed(room_width / 2, room_height / 2, "Doctor Copter", 10, 300, 2, 2, image_angle);
     }
 </string>
           </argument>

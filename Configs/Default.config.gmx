@@ -387,10 +387,12 @@
     <option_xbone_texture_page>1024</option_xbone_texture_page>
   </Options>
   <ConfigConstants>
-    <constants number="3">
+    <constants number="5">
       <constant name="facing_right">1</constant>
       <constant name="facing_left">2</constant>
       <constant name="idle">3</constant>
+      <constant name="game_paused">4</constant>
+      <constant name="game_play">5</constant>
     </constants>
   </ConfigConstants>
 </Config>

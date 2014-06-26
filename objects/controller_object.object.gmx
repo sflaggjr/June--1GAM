@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>randomize();
-game_state = game_paused;
 time = 60;
 lives = 3;
 alarm[1] = 30;       
@@ -61,15 +60,13 @@ alarm[1] = 30;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if game_state = game_play
-    {
-        time -=1;
+            <string>time -=1;
         if (!sign(obj_copter.hspd) = 0  || !sign(obj_copter.vspd) = 0)
             {   
-                obj_copter.fuel -= 1
+                obj_copter.fuel -= 5
             }
-    alarm[1] = 30;
-    }
+alarm[1] = 30;
+
 </string>
           </argument>
         </arguments>
@@ -92,30 +89,19 @@ alarm[1] = 30;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if game_state = game_paused
+            <string>if time = 0
     {
-        if keyboard_check(vk_space)
-            {   
-                room_goto_next();
-                game_state = game_play;
-            }
-    }
-
-
-if game_state = game_play
-{
-    if time = 0
-        {
-            // We'll handle what happens when time hits 0. Ending the game for now.
+        // We'll handle what happens when time hits 0. Ending the game for now.
             room_goto_next();
             time = 60;
-        }
+            audio_stop_all();
+    }
     
     if lives = 0
         {
             game_end();
         }
-}
+
 </string>
           </argument>
         </arguments>
@@ -155,19 +141,14 @@ if game_state = game_play
           <argument>
             <kind>1</kind>
             <string>draw_set_font(font0);
-if game_state = game_play
-{
 draw_text(x, 460, "Rescuees: " + string(obj_copter.load));
 draw_text(480, 460, "Score: " + string(score));
 draw_text(480, y, "Time: " + string(time));
 draw_text(x, y, "Fuel: " + string(obj_copter.fuel));
-}
+draw_text(240, y, "Losses: " + string(lives));
 
-if room = Title
-    {
-        image_angle += 1;
-        draw_text_ext_transformed(room_width / 2, room_height / 2, "Doctor Copter", 10, 300, 2, 2, image_angle);
-    }
+
+
 </string>
           </argument>
         </arguments>

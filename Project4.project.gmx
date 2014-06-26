@@ -32,6 +32,7 @@
     <object>objects\obj_hospital</object>
     <object>objects\obj_spawner</object>
     <object>objects\obj_fuelstation</object>
+    <object>objects\obj_titlescreen</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\Title</room>

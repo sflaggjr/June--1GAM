@@ -28,7 +28,8 @@
             <string>randomize();
 time = 60;
 lives = 3;
-alarm[1] = 30;       
+difficulty = 0;
+alarm[1] = 30 - difficulty;       
 
 
 
@@ -91,10 +92,17 @@ alarm[1] = 30;
             <kind>1</kind>
             <string>if time = 0
     {
-        // We'll handle what happens when time hits 0. Ending the game for now.
-            room_goto_next();
+        if room = level_5
+            {
+                room_goto(level_1);
+                difficulty += 5;
+            }
+        else
+            {
+                room_goto_next();
+            }
             time = 60;
-            audio_stop_all();
+            audio_stop_all();            
     }
     
     if lives = 0
